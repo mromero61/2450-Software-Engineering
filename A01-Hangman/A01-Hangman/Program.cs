@@ -11,22 +11,33 @@ namespace A01_Hangman
 
         static void Main(string[] args)
         {
-            bool wordGuessed = true;
-            string letterGuessed;
+            bool wordNotGuessed = true;
+            char letterGuessed;
             string secretWord;
             HangmanLogic hangmanLogic = new HangmanLogic();
 
             secretWord = hangmanLogic.SecretWord;
             hangmanLogic.Greetings();
-            Console.WriteLine(String.Join("", secretWord.Select(v => "_")) + " lives left: {0} \n", hangmanLogic.Lives);
 
-            while (wordGuessed)
+            while (wordNotGuessed)
             {
+                hangmanLogic.displayHangman();
                 Console.WriteLine("What is your guess: ");
-                letterGuessed = Console.ReadLine();
+                letterGuessed = Console.ReadLine()[0];
+                Char.ToLower(letterGuessed);
+                Console.WriteLine();
+                hangmanLogic.CheckLetter(letterGuessed);
+
+                if (hangmanLogic.wordGuessed())
+                {
+                    hangmanLogic.displayHangman();
+                    wordNotGuessed = false;
+                }
                 
             }
 
+            Console.WriteLine("You win!\n");
+            Console.ReadLine();
         }
 
     }
