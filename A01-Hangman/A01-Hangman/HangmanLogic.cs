@@ -37,7 +37,7 @@ namespace A01_Hangman
 
             if(LettersGuessed.Contains(letterGuessed))
             {
-                Console.WriteLine("You've already guessed {0}. Please try another letter\n", letterGuessed);
+                Console.WriteLine("You've already guessed {0}. Please try another letter.\n", letterGuessed);
                 return;
             }
             else
@@ -63,8 +63,7 @@ namespace A01_Hangman
 
             if (lives == 0)
             {
-                Console.WriteLine("Out of lives, you lose!");
-                Console.ReadLine();
+                displayLosingMessage();
                 Environment.Exit(0);
             }
         }
@@ -79,7 +78,7 @@ namespace A01_Hangman
                 }
                 else
                 {
-                    Console.Write("_");
+                    Console.Write("_ ");
                 }
             }
             Console.Write(" | lives left: {0} \n\n", Lives);
@@ -96,6 +95,13 @@ namespace A01_Hangman
             {
                 return true;
             }
+        }
+
+        public void displayLosingMessage()
+        {
+            Console.WriteLine("Out of lives, you lose!\n");
+            Console.WriteLine("Correct word was {0}!", secretWord);
+            Console.ReadLine();
         }
 
     }
